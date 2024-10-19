@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 
 import { remover, editar } from '../../store/reducers/tarefas'
 import TarefaClass from '../../models/Tarefa'
+import { Botao, BotaoSalvar } from '../../styles'
 
 //importando tarefas de models
 type Props = TarefaClass
@@ -50,7 +51,7 @@ const Tarefa = ({
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.botaSalvar
+            <BotaoSalvar
               onClick={() => {
                 dispatch(
                   editar({
@@ -65,17 +66,17 @@ const Tarefa = ({
               }}
             >
               salvar
-            </S.botaSalvar>
-            <S.botaCancelarRemover onClick={cancelarEdicao}>
+            </BotaoSalvar>
+            <S.BotaCancelarRemover onClick={cancelarEdicao}>
               cancelar
-            </S.botaCancelarRemover>
+            </S.BotaCancelarRemover>
           </>
         ) : (
           <>
-            <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
-            <S.botaCancelarRemover onClick={() => dispatch(remover(id))}>
+            <Botao onClick={() => setEstaEditando(true)}>Editar</Botao>
+            <S.BotaCancelarRemover onClick={() => dispatch(remover(id))}>
               remover
-            </S.botaCancelarRemover>
+            </S.BotaCancelarRemover>
           </>
         )}
       </S.BarraAcoes>
