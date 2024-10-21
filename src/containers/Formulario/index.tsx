@@ -13,6 +13,8 @@ const Formulario = () => {
   const navigate = useNavigate()
 
   const [titulo, setTitulo] = useState('')
+  const [email, setEmail] = useState('')
+  const [contato, setContato] = useState('')
   const [descricao, setDescricao] = useState('')
   const [prioridade, setPrioridade] = useState(enums.Prioridade.NORMAL)
 
@@ -39,6 +41,18 @@ const Formulario = () => {
           onChange={(evento) => setTitulo(evento.target.value)}
           type="text"
           placeholder="Nome completo"
+        />
+        <Campo
+          value={email}
+          onChange={(evento) => setEmail(evento.target.value)}
+          type="email"
+          placeholder="Email"
+        />
+        <Campo
+          value={contato}
+          onChange={(evento) => setContato(evento.target.value)}
+          type="number"
+          placeholder="Contato"
         />
         <Campo
           value={descricao}
