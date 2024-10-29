@@ -24,8 +24,6 @@ const Formulario = () => {
     dispatch(
       cadastrar({
         titulo,
-        email,
-        contato,
         prioridade,
         descricao,
         status: enums.Status.PENDENTE
