@@ -25,6 +25,12 @@ export const Tag = styled.span`
   display: inline-block;
 `
 
+export const Paragrafo = styled.p`
+  font-weight: bold;
+  padding-top: 8px;
+  padding-bottom: 8px;
+`
+
 export const Descricao = styled.textarea`
   color: #8b8b8b;
   font-size: 14px;
