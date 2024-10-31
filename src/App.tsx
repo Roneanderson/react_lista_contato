@@ -1,5 +1,5 @@
 import {} from 'react-redux'
-import EstiloGlobal, { Container } from './styles'
+import EstiloGlobal, { Container } from './styles/styles'
 import Lateral from './containers/Lateral'
 import ListaDeTarefas from './containers/ListaDeTarefas'
 

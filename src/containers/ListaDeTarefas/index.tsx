@@ -1,9 +1,30 @@
+import Tarefa from '../../components/Tarefa'
+import { Container } from './styles'
+
 const ListaDeTarefas = () => (
-  <main>
+  <Container>
     <p>
       2 tarefas marcada como: &quot;categoria&ldquo; e &quot;categoria&ldquo;
     </p>
-  </main>
+    <li>
+      <Tarefa />
+    </li>
+    <li>
+      <Tarefa />
+    </li>
+    <li>
+      <Tarefa />
+    </li>
+    <li>
+      <Tarefa />
+    </li>
+    <li>
+      <Tarefa />
+    </li>
+    <li>
+      <Tarefa />
+    </li>
+  </Container>
 )
 
 export default ListaDeTarefas
