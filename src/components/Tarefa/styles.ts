@@ -7,6 +7,9 @@ export const Card = styled.div`
   margin-bottom: 32px;
   border-radius: 16px;
 `
+export const LinkCard = styled.span`
+  font-weight: normal;
+`
 
 export const Titulo = styled.h3`
   font-size: 18px;
