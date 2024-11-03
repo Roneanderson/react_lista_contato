@@ -1,6 +1,6 @@
 import Tarefa from '../../components/Tarefa'
 import { Container } from './styles'
-
+import * as enums from '../../utils/enums/Tarefa'
 const tarefas = [
   {
     titulo: 'Lista de estudo',
@@ -8,8 +8,8 @@ const tarefas = [
     contato: 16992202568,
     email: 'joaoSilva@teste',
     descricao: 'ver aula 3 da EBAC',
-    prioridade: 'importante',
-    status: 'pendente'
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.CONCLUIDA
   },
   {
     titulo: 'Lista de tabela ',
@@ -17,8 +17,8 @@ const tarefas = [
     contato: 16992204587,
     email: 'RobertoSilva@teste',
     descricao: 'type-Script EBAC',
-    prioridade: 'urgente',
-    status: 'pendente'
+    prioridade: enums.Prioridade.URGENTE,
+    status: enums.Status.PENDENTE
   },
   {
     titulo: 'Cronograma de estudo',
@@ -26,8 +26,8 @@ const tarefas = [
     contato: 16992203030,
     email: 'JoseSantos@teste',
     descricao: 'lista de react da EBAC',
-    prioridade: 'urgente',
-    status: 'concluida'
+    prioridade: enums.Prioridade.NORMAL,
+    status: enums.Status.PENDENTE
   }
 ]
 
