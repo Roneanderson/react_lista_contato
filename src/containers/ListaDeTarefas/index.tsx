@@ -1,57 +1,35 @@
+import { useSelector } from 'react-redux'
+
 import Tarefa from '../../components/Tarefa'
 import { Container } from './styles'
-import * as enums from '../../utils/enums/Tarefa'
-const tarefas = [
-  {
-    titulo: 'Lista de estudo',
-    nome: 'João Silva',
-    contato: 16992202568,
-    email: 'joaoSilva@teste',
-    descricao: 'ver aula 3 da EBAC',
-    prioridade: enums.Prioridade.IMPORTANTE,
-    status: enums.Status.CONCLUIDA
-  },
-  {
-    titulo: 'Lista de tabela ',
-    nome: 'Roberto Silva',
-    contato: 16992204587,
-    email: 'RobertoSilva@teste',
-    descricao: 'type-Script EBAC',
-    prioridade: enums.Prioridade.URGENTE,
-    status: enums.Status.PENDENTE
-  },
-  {
-    titulo: 'Cronograma de estudo',
-    nome: 'José Santos',
-    contato: 16992203030,
-    email: 'JoseSantos@teste',
-    descricao: 'lista de react da EBAC',
-    prioridade: enums.Prioridade.NORMAL,
-    status: enums.Status.PENDENTE
-  }
-]
 
-const ListaDeTarefas = () => (
-  <Container>
-    <p>
-      2 tarefas marcada como: &quot;categoria&ldquo; e &quot;categoria&ldquo;
-    </p>
-    <ul>
-      {tarefas.map((t) => (
-        <li key={t.titulo}>
-          <Tarefa
-            titulo={t.titulo}
-            nome={t.nome}
-            email={t.email}
-            contato={t.contato}
-            descricao={t.descricao}
-            prioridade={t.prioridade}
-            status={t.status}
-          />
-        </li>
-      ))}
-    </ul>
-  </Container>
-)
+import { RootReducer } from '../../store'
+
+const ListaDeTarefas = () => {
+  const { tarefas } = useSelector((state: RootReducer) => state)
+
+  return (
+    <Container>
+      <p>
+        2 tarefas marcada como: &quot;categoria&ldquo; e &quot;categoria&ldquo;
+      </p>
+      <ul>
+        {tarefas.map((t) => (
+          <li key={t.titulo}>
+            <Tarefa
+              titulo={t.titulo}
+              nome={t.nome}
+              email={t.email}
+              contato={t.contato}
+              descricao={t.descricao}
+              prioridade={t.prioridade}
+              status={t.status}
+            />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  )
+}
 
 export default ListaDeTarefas
