@@ -1,6 +1,6 @@
 import * as enums from '../utils/enums/Tarefa'
 
-//class tem que primeira letra em maiscula por ser uma class
+//class tem a primeira letra em maiscula por ser uma class
 class Tarefa {
   titulo: string
   nome: string

@@ -2,43 +2,51 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Tarefa from '../../models/Tarefa'
 import * as enums from '../../utils/enums/Tarefa'
 
+type TarefaState = {
+  itens: Tarefa[]
+}
+
+const initialState: TarefaState = {
+  itens: [
+    {
+      titulo: 'Estudar React',
+      nome: 'José Santos',
+      contato: 16992203030,
+      email: 'JoseSantos@teste',
+      prioridade: enums.Prioridade.URGENTE,
+      status: enums.Status.PENDENTE,
+      descricao: 'Praticar o useEffect',
+      id: 1
+    },
+    {
+      titulo: 'Estudar typeScript',
+      nome: 'Roberto Silva',
+      contato: 16992204587,
+      email: 'RobertoSilva@teste',
+      prioridade: enums.Prioridade.NORMAL,
+      status: enums.Status.PENDENTE,
+      descricao: 'Rever aula 2 do modulo',
+      id: 2
+    },
+    {
+      titulo: 'Estudar typeScript',
+      nome: 'João Silva',
+      contato: 1699220256,
+      email: 'joaoSilva@teste',
+      prioridade: enums.Prioridade.URGENTE,
+      status: enums.Status.CONCLUIDA,
+      descricao: 'Estudar java',
+      id: 3
+    }
+  ]
+}
+
 const tarefaSlice = createSlice({
   name: 'tarefas',
-  initialState: [
-    new Tarefa(
-      'Estudar java',
-      'João Silva',
-      1699220256,
-      'joaoSilva@teste',
-      enums.Prioridade.IMPORTANTE,
-      enums.Status.PENDENTE,
-      'Estudar java',
-      1
-    ),
-    new Tarefa(
-      'Estudar typeScript',
-      'Roberto Silva',
-      16992204587,
-      'RobertoSilva@teste',
-      enums.Prioridade.URGENTE,
-      enums.Status.CONCLUIDA,
-      'Rever aula 2 do modulo',
-      2
-    ),
-    new Tarefa(
-      'Estudar React',
-      'José Santos',
-      16992203030,
-      'JoseSantos@teste',
-      enums.Prioridade.URGENTE,
-      enums.Status.PENDENTE,
-      'Praticar o useEffect',
-      3
-    )
-  ],
+  initialState,
   reducers: {
     remover: (state, action: PayloadAction<number>) => {
-      state = state.filter((tarefa) => tarefa.id !== action.payload)
+      state.itens = state.itens.filter((tarefa) => tarefa.id !== action.payload)
     }
   }
 })
