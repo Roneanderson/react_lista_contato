@@ -29,7 +29,7 @@ const initialState: TarefaState = {
       id: 2
     },
     {
-      titulo: 'Estudar typeScript',
+      titulo: 'Estudar java',
       nome: 'João Silva',
       contato: 1699220256,
       email: 'joaoSilva@teste',
