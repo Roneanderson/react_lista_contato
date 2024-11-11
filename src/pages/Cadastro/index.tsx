@@ -1,3 +1,13 @@
-const Cadastro = () => <div>nova tarefa</div>
+import Formulario from '../../containers/Formulario'
+import Lateral from '../../containers/Lateral'
 
+function Cadastro() {
+  return (
+    <>
+      {/* lateral */}
+      <Lateral />
+      <Formulario />
+    </>
+  )
+}
 export default Cadastro
