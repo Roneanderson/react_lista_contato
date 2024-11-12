@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 import { BotaoSalvar, MainContainer, Titulo } from '../../styles'
 import { Campo } from '../../styles'
@@ -10,17 +10,16 @@ import Tarefa from '../../models/Tarefa'
 import { cadastrar } from '../../store/reducers/tarefas'
 
 const Formulario = () => {
-  //dispatch atualiza a store
+  //dispatch para atualizar a store
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  //consumindo dados com useState
+  // state para consumir os dados
   const [titulo, setTitulo] = useState('')
   const [descricao, setDescricao] = useState('')
-  const [nome, setNome] = useState('')
-  const [email, setEmail] = useState('')
-  const [contato, setcontato] = useState('')
   const [prioridade, setPrioridade] = useState(enums.Prioridade.NORMAL)
+  const [nome, setNome] = useState('')
+  const [contato, setContato] = useState('')
+  const [email, setEmail] = useState('')
 
   const cadastrarTarefa = (evento: FormEvent) => {
     evento.preventDefault()
@@ -28,15 +27,14 @@ const Formulario = () => {
       titulo,
       nome,
       email,
-      descricao,
       contato,
       prioridade,
       enums.Status.PENDENTE,
+      descricao,
       9
     )
 
     dispatch(cadastrar(tarefaParaAdicionar))
-    navigate('/')
   }
 
   return (
@@ -49,47 +47,52 @@ const Formulario = () => {
           type="text"
           placeholder="Titulo"
         />
+
+        <label htmlFor="nome">Digite seu nome</label>
         <Campo
-          value={descricao}
-          onChange={(evento) => setDescricao(evento.target.value)}
-          type="text"
-          placeholder="Descrição"
-        />
-        <label htmlFor="nome">Nome completo </label>
-        <input
           value={nome}
           onChange={(evento) => setNome(evento.target.value)}
           type="text"
-          name="nome"
-          placeholder="Digite seu nome aqui"
+          placeholder="Digite seu nome"
         />
-        <label htmlFor="email">Digite seu e-mail</label>
-        <input
-          value={email}
-          onChange={(evento) => setEmail(evento.target.value)}
-          type="email"
-          name="email"
-          placeholder="Digite seu e-mail"
-        />
+
         <label htmlFor="contato">Digite seu contato</label>
-        <input
+        <Campo
           value={contato}
-          onChange={(evento) => setcontato(evento.target.value)}
+          onChange={(evento) => setContato(evento.target.value)}
           type="number"
           name="contato"
           placeholder="Digite seu contato"
         />
+
+        <label htmlFor="email">Digite seu email</label>
+        <Campo
+          value={email}
+          type="email"
+          onChange={(evento) => setEmail(evento.target.value)}
+          name="email"
+          placeholder="Digite seu email"
+        />
+
+        <Campo
+          value={descricao}
+          onChange={({ target }) => setDescricao(target.value)} //desestruturação
+          as="textarea"
+          type="text"
+          placeholder="descrição da tarefa"
+        />
+
         <Opcoes>
           <p>Prioridade</p>
           {Object.values(enums.Prioridade).map((prioridade) => (
             <Opcao key={prioridade}>
               <input
                 value={prioridade}
+                name="prioridade"
+                type="radio"
                 onChange={(evento) =>
                   setPrioridade(evento.target.value as enums.Prioridade)
                 }
-                name="prioridade"
-                type="radio"
                 id={prioridade}
                 defaultChecked={prioridade === enums.Prioridade.NORMAL}
               />
