@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
+// import { useNavigate } from 'react-router-dom'
 
 import { BotaoSalvar, MainContainer, Titulo } from '../../styles'
 import { Campo } from '../../styles'
@@ -7,19 +8,17 @@ import { Form, Opcoes, Opcao } from './styles'
 import * as enums from '../../utils/enums/Tarefa'
 import Tarefa from '../../models/Tarefa'
 import { cadastrar } from '../../store/reducers/tarefas'
-import { useNavigate } from 'react-router-dom'
 
 const Formulario = () => {
   //dispatch para atualizar a store
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   // state para consumir os dados
   const [titulo, setTitulo] = useState('')
   const [descricao, setDescricao] = useState('')
   const [prioridade, setPrioridade] = useState(enums.Prioridade.NORMAL)
   const [nome, setNome] = useState('')
-  const [contato, setContato] = useState(0)
+  const [contato, setContato] = useState(Number)
   const [email, setEmail] = useState('')
 
   const cadastrarTarefa = (evento: FormEvent) => {
@@ -36,7 +35,6 @@ const Formulario = () => {
     )
 
     dispatch(cadastrar(tarefaParaAdicionar))
-    navigate('/')
   }
 
   return (
@@ -67,8 +65,8 @@ const Formulario = () => {
         <label htmlFor="email">Digite seu email</label>
         <Campo
           value={email}
-          onChange={(evento) => {
-            setEmail(evento.target.value)
+          onChange={(event) => {
+            setEmail(event.target.value)
           }}
           type="email"
           placeholder="Digite seu email"
