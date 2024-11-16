@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { BotaoSalvar, MainContainer, Titulo } from '../../styles'
 import { Campo } from '../../styles'
@@ -12,6 +12,7 @@ import { cadastrar } from '../../store/reducers/tarefas'
 const Formulario = () => {
   //dispatch para atualizar a store
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // state para consumir os dados
   const [titulo, setTitulo] = useState('')
@@ -35,6 +36,7 @@ const Formulario = () => {
     )
 
     dispatch(cadastrar(tarefaParaAdicionar))
+    navigate('/')
   }
 
   return (
