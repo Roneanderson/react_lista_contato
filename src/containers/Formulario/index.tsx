@@ -6,7 +6,7 @@ import { BotaoSalvar, MainContainer, Titulo } from '../../styles'
 import { Campo } from '../../styles'
 import { Form, Opcoes, Opcao } from './styles'
 import * as enums from '../../utils/enums/Tarefa'
-import Tarefa from '../../models/Tarefa'
+
 import { cadastrar } from '../../store/reducers/tarefas'
 
 const Formulario = () => {
@@ -19,23 +19,23 @@ const Formulario = () => {
   const [descricao, setDescricao] = useState('')
   const [prioridade, setPrioridade] = useState(enums.Prioridade.NORMAL)
   const [nome, setNome] = useState('')
-  const [contato, setContato] = useState(Number)
+  const [contato, setContato] = useState(0)
   const [email, setEmail] = useState('')
 
   const cadastrarTarefa = (evento: FormEvent) => {
     evento.preventDefault()
-    const tarefaParaAdicionar = new Tarefa(
-      titulo,
-      nome,
-      contato,
-      email,
-      prioridade,
-      enums.Status.PENDENTE,
-      descricao,
-      9
-    )
 
-    dispatch(cadastrar(tarefaParaAdicionar))
+    dispatch(
+      cadastrar({
+        titulo,
+        contato,
+        descricao,
+        email,
+        nome,
+        prioridade,
+        status: enums.Status.PENDENTE
+      })
+    )
     navigate('/')
   }
 
@@ -59,7 +59,7 @@ const Formulario = () => {
         <label htmlFor="contato">Digite seu contato</label>
         <Campo
           value={contato}
-          onChange={() => setContato(0)}
+          onChange={(evento) => setContato(evento.target.valueAsNumber)}
           type="number"
           name="contato"
           placeholder="Digite seu contato"
@@ -67,8 +67,8 @@ const Formulario = () => {
         <label htmlFor="email">Digite seu email</label>
         <Campo
           value={email}
-          onChange={(event) => {
-            setEmail(event.target.value)
+          onChange={(evento) => {
+            setEmail(evento.target.value)
           }}
           type="email"
           placeholder="Digite seu email"
