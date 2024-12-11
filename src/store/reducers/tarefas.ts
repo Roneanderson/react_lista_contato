@@ -1,20 +1,41 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Tarefa from '../../models/Tarefa'
 
-const tarefasSlice = createSlice({
+type TarefaState = {
+  itens: Tarefa[]
+}
+const initialState: TarefaState = {
+  itens: [
+    {
+      nome: 'José Santos',
+      contato: 16992203030,
+      email: 'JoseSantos@teste',
+      id: 1
+    },
+    {
+      nome: 'José Santos',
+      contato: 16992203030,
+      email: 'JoseSantos@teste',
+      id: 2
+    },
+    {
+      nome: 'José Santos',
+      contato: 16992203030,
+      email: 'JoseSantos@teste',
+      id: 3
+    }
+  ]
+}
+const tarefaSlice = createSlice({
   name: 'tarefas',
-  initialState: [
-    new Tarefa('Roberto', 16992523225, 'Roberto@Silva', 1),
-    new Tarefa('Roberto', 16992523225, 'Roberto@Silva', 2),
-    new Tarefa('Roberto', 16992523225, 'Roberto@Silva', 3)
-  ],
+  initialState,
   reducers: {
     remover: (state, action: PayloadAction<number>) => {
-      state = state.filter((tarefa) => tarefa.id !== action.payload)
+      state.itens = state.itens.filter((itens) => itens.id !== action.payload)
     }
   }
 })
 
-export const { remover } = tarefasSlice.actions
+export const { remover } = tarefaSlice.actions
 
-export default tarefasSlice
+export default tarefaSlice.reducer

@@ -1,37 +1,28 @@
+import { useSelector } from 'react-redux'
+
 import Tarefa from '../../components/Tarefa'
 
-const tarefas = [
-  {
-    nome: 'teste',
-    email: 'teste2teste',
-    contato: 16992523252,
-    id: 1
-  },
-  {
-    nome: 'teste1',
-    email: 'teste1@teste',
-    contato: 16992523252,
-    id: 1
-  },
-  {
-    nome: 'teste2',
-    email: 'teste@teste2',
-    contato: 16992523252,
-    id: 3
-  }
-]
+import { RootReducer } from '../../store'
 
-const List = () => (
-  <main>
-    <p>tarefas</p>
-    <ul>
-      {tarefas.map((t) => (
-        <li key={t.id}>
-          <Tarefa nome={t.nome} email={t.email} contato={t.contato} id={t.id} />
-        </li>
-      ))}
-    </ul>
-  </main>
-)
+const List = () => {
+  const { tarefas } = useSelector((state: RootReducer) => state)
 
+  return (
+    <main>
+      <p>tarefas</p>
+      <ul>
+        {tarefas.itens.map((t) => (
+          <li key={t.nome}>
+            <Tarefa
+              id={t.id}
+              nome={t.nome}
+              contato={t.contato}
+              email={t.email}
+            />
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
+}
 export default List

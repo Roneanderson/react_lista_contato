@@ -6,8 +6,8 @@ class Tarefa {
 
   constructor(nome: string, contato: number, email: string, id: number) {
     this.nome = nome
-    this.email = email
     this.contato = contato
+    this.email = email
     this.id = id
   }
 }

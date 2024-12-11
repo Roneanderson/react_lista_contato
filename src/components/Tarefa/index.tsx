@@ -1,25 +1,24 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import * as S from './styles'
 
-//type Props ante da const
-// passar a propriedade no componentes List
+//importando a função remover
+import { remover } from '../../store/reducers/tarefas'
+import TarefaClass from '../../models/Tarefa'
 
-type Props = {
-  nome: string
-  email: string
-  contato: number
-  id: number
-}
+type Props = TarefaClass
 
-// atraves da {} para fazer a desetruturacao
-const Tarefa = ({ nome, email, contato }: Props) => {
+const Tarefa = ({ contato, email, id, nome }: Props) => {
+  const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
-  // setEstaEditando na funcao do botao editar
+
   return (
     <S.Card>
-      <S.Tag>{nome}</S.Tag>
-      <S.Tag>{email}</S.Tag>
-      <S.Tag>{contato}</S.Tag>
+      <S.Tag>contato{contato}</S.Tag>
+      <S.Tag>email{email}</S.Tag>
+      <S.Tag>id{id}</S.Tag>
+      <S.Tag>nome{nome}</S.Tag>
       <S.BarraAcoes>
         {estaEditando ? (
           <>
@@ -31,7 +30,9 @@ const Tarefa = ({ nome, email, contato }: Props) => {
         ) : (
           <>
             <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
-            <S.BotaCancelaRemover>Remover</S.BotaCancelaRemover>
+            <S.BotaCancelaRemover onClick={() => dispatch(remover(id))}>
+              Remover
+            </S.BotaCancelaRemover>
           </>
         )}
       </S.BarraAcoes>
