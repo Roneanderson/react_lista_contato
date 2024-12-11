@@ -1,30 +1,16 @@
 import { Provider } from 'react-redux'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
+import Formulario from './containers/Formulario'
+import List from './containers/List'
 import EstiloGlobal, { Container } from './styles'
-
 import store from './store'
-import Home from './pages/Home'
-import Cadastro from './pages/Cadastro'
 
-const rotas = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />
-  },
-  {
-    path: 'novo',
-    element: <Cadastro />
-  }
-])
-
-//Provider faz conexao entre react e o redux proviider recebe store = store
 function App() {
   return (
     <Provider store={store}>
       <EstiloGlobal />
       <Container>
-        <RouterProvider router={rotas} />
+        <Formulario />
+        <List />
       </Container>
     </Provider>
   )

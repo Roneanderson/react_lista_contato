@@ -1,35 +1,17 @@
-import * as enums from '../utils/enums/Tarefa'
-
-//class tem a primeira letra em maiscula por ser uma class
 class Tarefa {
-  titulo: string
   nome: string
-  contato: number
   email: string
-  prioridade: enums.Prioridade
-  status: enums.Status
-  descricao: string
+  contato: number
   id: number
 
-  constructor(
-    titulo: string,
-    nome: string,
-    contato: number,
-    email: string,
-    prioridade: enums.Prioridade,
-    status: enums.Status,
-    descricao: string,
-    id: number
-  ) {
-    this.titulo = titulo
+  constructor(nome: string, contato: number, email: string, id: number) {
     this.nome = nome
-    this.contato = contato
     this.email = email
-    this.prioridade = prioridade
-    this.status = status
-    this.descricao = descricao
+    this.contato = contato
     this.id = id
   }
 }
 
 export default Tarefa
+
+// exportamos para o reducer de tarefas

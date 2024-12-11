@@ -1,112 +1,37 @@
-import { ChangeEvent, useEffect, useState } from 'react' //dependencia externa
-import { useDispatch } from 'react-redux' // dependencia externa
-
+import { useState } from 'react'
 import * as S from './styles'
 
-import { remover, editar, alteraStatus } from '../../store/reducers/tarefas'
+//type Props ante da const
+// passar a propriedade no componentes List
 
-import TarefaClass from '../../models/Tarefa'
-import { Botao, BotaoSalvar } from '../../styles'
-import * as enums from '../../utils/enums/Tarefa'
+type Props = {
+  nome: string
+  email: string
+  contato: number
+  id: number
+}
 
-type Props = TarefaClass
-
-const Tarefa = ({
-  contato,
-  descricao: descricaoOriginal,
-  email,
-  status,
-  titulo,
-  nome,
-  prioridade,
-  id
-}: Props) => {
-  const dispatch = useDispatch()
+// atraves da {} para fazer a desetruturacao
+const Tarefa = ({ nome, email, contato }: Props) => {
   const [estaEditando, setEstaEditando] = useState(false)
-  const [descricao, setDescricao] = useState('')
-
-  useEffect(() => {
-    if (descricaoOriginal.length > 0) {
-      setDescricao(descricaoOriginal)
-    }
-  }, [descricaoOriginal])
-
-  function cancelarEdicao() {
-    setEstaEditando(false)
-    setDescricao(descricaoOriginal)
-  }
-
-  function alteraStatusTarefa(evento: ChangeEvent<HTMLInputElement>) {
-    console.log(evento.target.checked)
-    dispatch(alteraStatus({ id, finalizado: evento.target.checked }))
-  }
-
+  // setEstaEditando na funcao do botao editar
   return (
     <S.Card>
-      <label htmlFor={titulo}>
-        <input
-          type="checkbox"
-          id={titulo}
-          checked={status === enums.Status.CONCLUIDA}
-          onChange={alteraStatusTarefa}
-        />
-        <S.Titulo>
-          {estaEditando && <em>Editando: </em>}
-          {titulo}
-        </S.Titulo>
-      </label>
-      <S.Paragrafo>
-        nome: <S.LinkCard>{nome}</S.LinkCard>
-      </S.Paragrafo>
-      <S.Paragrafo>
-        contato:<S.LinkCard> {contato}</S.LinkCard>
-      </S.Paragrafo>
-      <S.Paragrafo>
-        email: <S.LinkCard> {email}</S.LinkCard>
-      </S.Paragrafo>
-      <S.Tag parametro="prioridade" prioridade={prioridade}>
-        {prioridade}
-      </S.Tag>
-      <S.Tag parametro="status" status={status}>
-        {status}
-      </S.Tag>
-      <S.Descricao
-        disabled={!estaEditando}
-        value={descricao}
-        onChange={(evento) => setDescricao(evento.target.value)}
-      />
+      <S.Tag>{nome}</S.Tag>
+      <S.Tag>{email}</S.Tag>
+      <S.Tag>{contato}</S.Tag>
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <BotaoSalvar
-              onClick={() => {
-                dispatch(
-                  editar({
-                    contato,
-                    descricao: descricaoOriginal,
-                    email,
-                    status,
-                    titulo,
-                    nome,
-                    prioridade,
-                    id
-                  })
-                )
-                setEstaEditando(false)
-              }}
-            >
-              Salvar
-            </BotaoSalvar>
-            <S.BotaoCancelarRemover onClick={cancelarEdicao}>
+            <S.BotaSalvar>Salvar</S.BotaSalvar>
+            <S.BotaCancelaRemover onClick={() => setEstaEditando(false)}>
               Cancelar
-            </S.BotaoCancelarRemover>
+            </S.BotaCancelaRemover>
           </>
         ) : (
           <>
-            <Botao onClick={() => setEstaEditando(true)}>Editar</Botao>
-            <S.BotaoCancelarRemover onClick={() => dispatch(remover(id))}>
-              Remover
-            </S.BotaoCancelarRemover>
+            <S.Botao onClick={() => setEstaEditando(true)}>Editar</S.Botao>
+            <S.BotaCancelaRemover>Remover</S.BotaCancelaRemover>
           </>
         )}
       </S.BarraAcoes>
@@ -114,15 +39,19 @@ const Tarefa = ({
   )
 }
 
+/* ternario
+{condicao ? tratamento verdadeiro : excecao}
+
+ternario com if
+if (condicao) {
+tratamento verdadeiro
+} else {
+excecao
+}
+
+exemplo variavel idade
+
+{idade => 18 ? 'é maior de idade' : 'é menor de idade'}
+*/
+
 export default Tarefa
-
-//{condicao ? tratamento verdadeiro : excecao}
-// if (condicao) {
-//tratamento verdadeiro
-//} else {
-//excecao
-//}
-// {idade >= 18? 'é maior de idade : 'e menor de idade}
-
-//componentes controlados [nome, setNome] = useState('')
-//componentes uncontrolled input onChange={e => setnome(e.value.target)}
