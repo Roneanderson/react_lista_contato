@@ -1,17 +1,23 @@
 class Tarefa {
+  titulo: string
   nome: string
-  email: string
   contato: number
+  email: string
   id: number
 
-  constructor(nome: string, contato: number, email: string, id: number) {
-    this.nome = nome
+  constructor(
+    titulo: string,
+    nome: string,
+    contato: number,
+    email: string,
+    id: number
+  ) {
     this.contato = contato
+    this.nome = nome
     this.email = email
     this.id = id
+    this.titulo = titulo
   }
 }
 
 export default Tarefa
-
-// exportamos para o reducer de tarefas
