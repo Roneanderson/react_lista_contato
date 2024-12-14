@@ -1,5 +1,5 @@
 // import React, { useState } from 'react'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Form, Input, Label } from './styles'
 
 const initialvalue = {
@@ -17,14 +17,14 @@ const Formulario = () => {
     setValues({ ...values, [name]: value })
   }
 
-  function onSubmit(ev: { preventDefault: () => void }) {
+  function onSubmit(ev: FormEvent) {
     ev.preventDefault()
   }
 
   return (
     <>
-      <h1>Formulário de Cadastro</h1>
       <Form onSubmit={onSubmit}>
+        <h1>Formulário de Cadastro</h1>
         <Label htmlFor="nome">Nome</Label>
         <Input id="nome" name="nome" type="text" onChange={onchange} />
 

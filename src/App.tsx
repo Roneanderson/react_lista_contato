@@ -1,12 +1,26 @@
 import { Provider } from 'react-redux'
-import Formulario from './containers/Formulario'
+
 import store from './store'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Cadastro from './pages/Cadastro'
+import Home from './pages/Home'
+
+const rotas = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: 'novo',
+    element: <Cadastro />
+  }
+])
 
 function App() {
   return (
     <>
       <Provider store={store}>
-        <Formulario />
+        <RouterProvider router={rotas} />
       </Provider>
     </>
   )

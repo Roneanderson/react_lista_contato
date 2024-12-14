@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  max-width: 350%;
 `
 
 export const Label = styled.label`
